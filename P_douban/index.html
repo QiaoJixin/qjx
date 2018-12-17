@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li>
+				<h2></h2>
+				<img src=""/>
+			</li>
+		</ul>
+	</body>
+	<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		init();
+		function init() {
+			$.ajax({
+				type:"get",
+				url:"http://localhost:8080/init",
+				success(res){
+					let data = JSON.parse(res)
+					console.log(data);
+					let str = "";
+					for (var i = 0; i < data.length; i++) {
+						str += `
+							<ul>
+								<li>
+									<h2>${data[i].title}</h2>
+									<img src=${data[i].img} />
+								</li>
+							</ul>
+						`
+					}
+					$("body").html(str);
+				}
+			});
+		}
+	</script>
+</html>
